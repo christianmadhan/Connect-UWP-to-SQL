@@ -13,7 +13,17 @@
             <viewModel:MovieList/>
         </Grid.DataContext>
         
-        <ListView ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie, Mode=TwoWay}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="300"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedMovie, Mode=TwoWay}" Grid.Column="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -22,8 +32,36 @@
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-                       
         </ListView>
+
+        <StackPanel Grid.Column="1" Margin="0,100,0,0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="ID"/>
+                <TextBox Width="300" Text="{Binding AddNewMovie.ID, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Title"/>
+                <TextBox Width="300" Text="{Binding AddNewMovie.Title, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Year"/>
+                <TextBox Width="300" Text="{Binding AddNewMovie.Year, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="RunningTimeInMins"/>
+                <TextBox Width="300" Text="{Binding AddNewMovie.RunningTimeInMins, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="StudioID"/>
+                <TextBox Width="300" Text="{Binding AddNewMovie.StudioID, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <Button Content="Add Movie" Command="{Binding AddMovie}"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <Button Content="Delete Movie" Command="{Binding DeleteMovie}"/>
+        </StackPanel>
         
     </Grid>
 </Page>
